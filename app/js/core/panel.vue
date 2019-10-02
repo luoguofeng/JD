@@ -29,6 +29,6 @@ export default {
 <style  lang="scss">
 @import "../../css/element.scss";
 .panel {
-  @include pannel;
+  @include panel;
 }
 </style>

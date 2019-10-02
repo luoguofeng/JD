@@ -1,28 +1,28 @@
-<template>
-  <section :class="cname">
-    <swiper :options="options"
-            :not-next-tick="options.notNextTick">
-      <swiper-slide v-for="item in items"
-                    :key="item.href">
-        <router-link :to="{name:itme.href}">
-          <img :src="item.src">
-        </router-link>
-      </swiper-slide>
-      <div class="swiper-pagination"
-           v-if="options.pagination"></div>
-    </swiper>
-  </section>
+<template lang="html">
+    <section :class="cname">
+        <swiper :options="options" :not-next-tick="options.notNextTick">
+            <swiper-slide v-for="(item, index) in items" :key="index">
+                <router-link :to="{ name: item.href}">
+                    <img :src="item.src" alt="">
+                </router-link>
+            </swiper-slide>
+            <div class="swiper-pagination" v-if="options.pagination" slot="pagination"/>
+        </swiper>
+    </section>
 </template>
 
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper"
 export default {
-  name: 'slider',
-  comments: {
+  components: {
     swiper,
-    swiperSlide
+    swiperSlide,
   },
   props: {
+    cname: {
+      type: String,
+      default: "",
+    },
     options: {
       type: Object,
       default () {
@@ -30,22 +30,22 @@ export default {
           autoplay: true,
           loop: true,
           pagination: {
-            el: ".swiper-pagination"
+            el: ".swiper-pagination",
           },
-          notNextTick: false
+          notNextTick: false,
         }
-      }
+      },
     },
     items: {
       type: Array,
       default () {
         return []
-      }
-    }
-  }
-};
+      },
+    },
+  },
+}
 </script>
 
-<style lang="scss">
+<style lang="css">
 @import "~swiper/dist/css/swiper.css";
 </style>
